@@ -102,5 +102,11 @@ npm run lint
 ### Web (Vercel)
 1. Connect GitHub repo to Vercel
 2. Set root directory to `/web`
-3. Configure `NEXT_PUBLIC_WS_URL` to point to Railway server
+3. Configure `NEXT_PUBLIC_WS_URL` = `wss://fast-news-production.up.railway.app`
 4. Vercel auto-deploys on push to main
+
+## Production URLs
+
+- **Server**: `https://fast-news-production.up.railway.app`
+- **Health Check**: `https://fast-news-production.up.railway.app/health`
+- **WebSocket**: `wss://fast-news-production.up.railway.app`

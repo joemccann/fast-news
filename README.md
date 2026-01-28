@@ -112,8 +112,13 @@ The server includes:
 2. Connect your GitHub repository
 3. Set the root directory to `web`
 4. Add environment variable:
-   - `NEXT_PUBLIC_WS_URL` = your Railway server WebSocket URL (e.g., `wss://your-app.railway.app`)
+   - `NEXT_PUBLIC_WS_URL` = `wss://fast-news-production.up.railway.app`
 5. Deploy
+
+### Production URLs
+
+- **Server (Railway)**: `https://fast-news-production.up.railway.app`
+- **WebSocket URL**: `wss://fast-news-production.up.railway.app`
 
 ## Connecting to a Real News Feed
 
