@@ -15,6 +15,7 @@ pnpm-debug.log*
 # Build output
 dist/
 build/
+.next/
 *.tsbuildinfo
 
 # Testing
@@ -40,3 +41,6 @@ logs/
 .cache/
 .temp/
 .tmp/
+
+# Private/local files
+_private/
