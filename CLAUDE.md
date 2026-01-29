@@ -111,4 +111,15 @@ npm run lint
 - **Health Check**: `https://fast-news-production.up.railway.app/health`
 - **WebSocket**: `wss://fast-news-production.up.railway.app`
 
-                      
+## Post-Push Verification
+
+After pushing to main, verify deployments succeeded:
+
+```bash
+# Check Vercel build status
+gh api repos/joemccann/fast-news/commits/main/status --jq '.statuses[] | select(.context | startswith("Vercel")) | {state, context}'
+
+# Check Railway health endpoint
+curl -s https://fast-news-production.up.railway.app/health | jq
+```
+
