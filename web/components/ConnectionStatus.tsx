@@ -7,30 +7,57 @@ interface ConnectionStatusProps {
   onReconnect?: () => void;
 }
 
-const statusConfig: Record<Status, { color: string; label: string }> = {
-  connected: { color: "bg-green-500", label: "Connected" },
-  connecting: { color: "bg-yellow-500", label: "Connecting" },
-  disconnected: { color: "bg-red-500", label: "Disconnected" },
-  error: { color: "bg-red-500", label: "Error" },
+const statusConfig: Record<
+  Status,
+  { color: string; bgColor: string; label: string }
+> = {
+  connected: {
+    color: "bg-emerald-500",
+    bgColor: "bg-emerald-500/10",
+    label: "Live",
+  },
+  connecting: {
+    color: "bg-amber-500",
+    bgColor: "bg-amber-500/10",
+    label: "Connecting",
+  },
+  disconnected: {
+    color: "bg-zinc-500",
+    bgColor: "bg-zinc-500/10",
+    label: "Offline",
+  },
+  error: {
+    color: "bg-red-500",
+    bgColor: "bg-red-500/10",
+    label: "Error",
+  },
 };
 
 export function ConnectionStatus({ status, onReconnect }: ConnectionStatusProps) {
   const config = statusConfig[status];
+  const showRetry = (status === "disconnected" || status === "error") && onReconnect;
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="flex items-center gap-1.5">
+    <div className="flex items-center gap-3">
+      <div
+        className={`flex items-center gap-2 px-2.5 py-1 rounded-full ${config.bgColor}`}
+      >
         <span
-          className={`w-2 h-2 rounded-full ${config.color} ${
-            status === "connecting" ? "animate-pulse" : ""
-          }`}
+          className={`w-1.5 h-1.5 rounded-full ${config.color} ${
+            status === "connecting" ? "connection-pulse" : ""
+          } ${status === "connected" ? "shadow-[0_0_6px_rgb(16_185_129_/_0.5)]" : ""}`}
         />
-        <span className="text-sm text-zinc-400">{config.label}</span>
+        <span className="text-xs font-medium text-zinc-300 tracking-wide">
+          {config.label}
+        </span>
       </div>
-      {(status === "disconnected" || status === "error") && onReconnect && (
+
+      {showRetry && (
         <button
           onClick={onReconnect}
-          className="text-xs px-2 py-1 bg-zinc-800 hover:bg-zinc-700 rounded transition-colors"
+          className="text-xs font-medium px-3 py-1 text-zinc-400 hover:text-zinc-200
+                     bg-zinc-800/50 hover:bg-zinc-800 rounded-full
+                     transition-colors duration-150 cursor-pointer"
         >
           Retry
         </button>
