@@ -244,8 +244,8 @@ process.on('SIGINT', () => shutdown('SIGINT'));
 // Start Server
 // ============================================================================
 
-httpServer.listen(PORT, () => {
-  console.log(`[SERVER] WebSocket relay server listening on port ${PORT}`);
+httpServer.listen(PORT, '0.0.0.0', () => {
+  console.log(`[SERVER] WebSocket relay server listening on 0.0.0.0:${PORT}`);
   console.log(`[SERVER] Health check available at http://localhost:${PORT}/health`);
   connectUpstream();
 });
